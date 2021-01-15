@@ -10,7 +10,7 @@ router.post('/login', async (req, res, next) => {
   if (!isAuthenticated) {
     next({
       status: 401,
-      message: 'The username or password is wrong!'
+      error: 'The username or password is wrong!'
     })
     return
   }
