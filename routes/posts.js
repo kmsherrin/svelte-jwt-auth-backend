@@ -7,7 +7,7 @@ const Post = mongoose.model('Post')
 const Comment = mongoose.model('Comment')
 
 router.get('/', async (req, res) => {
-  const stories = await post
+  const stories = await Post
     .find()
     .limit(+req.query.limit || 10)
     .skip(+req.query.offset || 0)
@@ -18,12 +18,12 @@ router.get('/', async (req, res) => {
     )
   res.json({
     data: stories,
-    totalCount: await post.countDocuments()
+    totalCount: await Post.countDocuments()
   })
 })
 
 router.get('/:postId', async (req, res) => {
-  const post = await post.findOne({ _id: req.params.postId })
+  const post = await Post.findOne({ _id: req.params.postId })
   res.json(post)
 })
 
@@ -44,7 +44,7 @@ router.put(
   '/:postId',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    let post = await post.findOne({ _id: req.params.postId })
+    let post = await Post.findOne({ _id: req.params.postId })
     if (!post.user.equals(req.user._id)) {
       res
         .status(401)
@@ -64,7 +64,7 @@ router.delete(
   '/:postId',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    let post = await post.findOne({ _id: req.params.postId })
+    let post = await Post.findOne({ _id: req.params.postId })
     if (!post.user.equals(req.user._id)) {
       res
         .status(401)
@@ -83,7 +83,7 @@ router.delete(
 
 // End point for upvoting a post
 router.post('/:postId/upvote', async (req, res) => {
-  let post = await post.findOne({ _id: req.params.postId })
+  let post = await Post.findOne({ _id: req.params.postId })
   post.score = post.score + 1
   await post.save()
   res.json({
