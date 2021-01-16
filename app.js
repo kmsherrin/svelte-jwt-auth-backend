@@ -1,7 +1,6 @@
 const cors = require('cors')
 const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
-
 const app = require('express')()
 
 require('dotenv').config({ path: '.env' })
@@ -16,8 +15,8 @@ mongoose.connection.on('error', (err) => {
   console.error('Connection error on database:', err)
 })
 
-//require('./models/Story.js')
-//require('./models/Comment.js')
+require('./models/Post.js')
+require('./models/Comment.js')
 require('./models/User.js')
 
 require('./handlers/passport')
@@ -26,13 +25,14 @@ app.use(cors())
 
 app.use(bodyParser.json())
 
+
 app.get('/', (req, res) => {
   res.end('hello world!')
 })
 
 app.use('/', require('./routes/users_route'))
 app.use('/', require('./routes/auth'))
-//app.use('/stories', require('./routes/stories'))
+app.use('/posts', require('./routes/posts'))
 
 app.use((req, res) => {
   res
@@ -55,5 +55,5 @@ app.use((err, req, res, next) => {
     .json(error)
 })
 
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3002
 app.listen(port, () => console.log(`Authentication is running on port ${port}`))

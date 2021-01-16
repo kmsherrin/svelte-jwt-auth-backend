@@ -2,6 +2,8 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose')
 
+require('dotenv').config({ path: '//.env' })
+
 const userSchema = new mongoose.Schema({
   username: {
     type: String,
@@ -25,7 +27,7 @@ userSchema.methods.getToken = function () {
       id: this._id,
       username: this.username
     },
-    'yoursecretkey',
+      process.env.SECRET_KEY,
     { expiresIn: '12h' }
   )
 }
