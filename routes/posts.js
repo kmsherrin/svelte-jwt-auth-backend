@@ -30,6 +30,7 @@ router.get('/:postId', async (req, res) => {
 router.post('/',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
+    console.log(req)
     const post = await (new Post({
       title: req.body.title,
       type: req.body.type,

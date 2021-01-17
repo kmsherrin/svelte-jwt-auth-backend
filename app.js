@@ -21,9 +21,8 @@ require('./models/User.js')
 
 require('./handlers/passport')
 
-app.use(cors())
-
-app.use(bodyParser.json())
+app.use(cors());
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => {
   res.end('hello world!')
