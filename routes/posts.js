@@ -94,13 +94,13 @@ router.post('/:postId/upvote', async (req, res) => {
 
 // Get the comments associated with a post
 router.get('/:postId/comments', async (req, res) => {
+    console.log(req.params.postId);
   const comments = await Comment.find({ post: req.params.postId, parent: null })
   res.json(comments)
 })
 
 
 // Making comments on a post
-
 router.post(
   '/:postId/comments',
   passport.authenticate('jwt', { session: false }),
