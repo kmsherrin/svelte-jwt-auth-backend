@@ -30,7 +30,7 @@ const postSchema = new mongoose.Schema({
 postSchema.virtual('commentsCount', {
   ref: 'Comment',
   localField: '_id',
-  foreignField: 'story',
+  foreignField: 'post',
   count: true
 })
 
