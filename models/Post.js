@@ -34,6 +34,18 @@ postSchema.virtual('commentsCount', {
   count: true
 })
 
+postSchema.virtual('commentTop', {
+  ref: 'Comment',
+  localField: '_id',
+  foreignField: 'post',
+  options: {
+    sort: {
+      score: 1
+    },
+    limit: 1
+  }
+})
+
 function autoPopulate (next) {
   this.populate('commentsCount')
   this.populate('user')
