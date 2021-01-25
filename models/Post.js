@@ -42,10 +42,13 @@ postSchema.virtual('commentTop', {
     sort: {
       score: 1
     },
-    limit: 1
+    limit: 3
   }
 })
 
+postSchema.virtual('contentStart').get(function() {
+  return this.content.slice(0, 30);
+})
 
 function autoPopulate (next) {
   this.populate('commentsCount')
