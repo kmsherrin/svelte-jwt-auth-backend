@@ -47,7 +47,7 @@ postSchema.virtual('commentTop', {
 })
 
 postSchema.virtual('contentStart').get(function() {
-  let contentStartFmt = this.content.slice(0, 300) + ". . .";
+  let contentStartFmt = this.content.slice(0, 300) + "...";
   return  contentStartFmt;
 })
 
