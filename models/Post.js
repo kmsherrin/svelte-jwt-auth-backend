@@ -47,7 +47,8 @@ postSchema.virtual('commentTop', {
 })
 
 postSchema.virtual('contentStart').get(function() {
-  return this.content.slice(0, 30);
+  let contentStartFmt = this.content.slice(0, 300) + ". . .";
+  return  contentStartFmt;
 })
 
 function autoPopulate (next) {
