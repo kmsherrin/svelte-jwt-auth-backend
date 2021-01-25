@@ -17,6 +17,13 @@ const userSchema = new mongoose.Schema({
   }
 })
 
+userSchema.virtual('postCount', {
+  ref: 'Post',
+  localField: '_id',
+  foreignField: 'user',
+  count: true
+})
+
 userSchema.methods.verifyPassword = function (password) {
   return bcrypt.compare(password, this.password)
 }
