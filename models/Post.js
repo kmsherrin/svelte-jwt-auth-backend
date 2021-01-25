@@ -46,8 +46,10 @@ postSchema.virtual('commentTop', {
   }
 })
 
+
 function autoPopulate (next) {
   this.populate('commentsCount')
+  this.populate('commentTop')
   this.populate('user')
   next()
 }
