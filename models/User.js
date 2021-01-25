@@ -44,4 +44,12 @@ userSchema.pre('save', async function (next) {
   next()
 })
 
+
+function autoPopulate (next) {
+  this.populate('postCount')
+  next()
+}
+userSchema.pre('find', autoPopulate)
+userSchema.pre('findOne', autoPopulate)
+
 module.exports = mongoose.model('User', userSchema)
