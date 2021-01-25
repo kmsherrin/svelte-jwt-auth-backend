@@ -51,6 +51,12 @@ postSchema.virtual('contentStart').get(function() {
   return  contentStartFmt;
 })
 
+postSchema.virtual('dateFmt').get(function() {
+  let date = this.createdAt.toLocaleString()
+  return date;
+})
+
+
 function autoPopulate (next) {
   this.populate('commentsCount')
   this.populate('commentTop')
