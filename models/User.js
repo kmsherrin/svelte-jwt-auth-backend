@@ -27,7 +27,7 @@ userSchema.virtual("postCount", {
   localField: "_id",
   foreignField: "user",
   count: true,
-});
+})
 
 userSchema.methods.verifyPassword = function (password) {
   return bcrypt.compare(password, this.password);
@@ -45,7 +45,7 @@ userSchema.methods.getToken = function () {
 };
 
 function autoPopulate(next) {
-  this.populate('postCount')
+  //this.populate('postCount')
   next();
 }
 
