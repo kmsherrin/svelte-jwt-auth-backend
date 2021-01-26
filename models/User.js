@@ -50,7 +50,7 @@ userSchema.methods.getToken = function () {
 };
 
 function autoPopulate(next) {
-  this.postsCount = getPostCount();
+  this.postsCount = this.getPostCount();
   next();
 }
 
