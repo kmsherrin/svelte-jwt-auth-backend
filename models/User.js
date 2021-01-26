@@ -40,7 +40,7 @@ userSchema.methods.getToken = function () {
 }
 
 function autoPopulate (next) {
-  this.populate('postCount')
+  //this.populate('postCount')
   next()
 }
 
