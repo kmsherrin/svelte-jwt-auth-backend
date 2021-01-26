@@ -39,16 +39,16 @@ userSchema.methods.getToken = function () {
   )
 }
 
+function autoPopulate (next) {
+  this.populate('postCount')
+  next()
+}
+
 userSchema.pre('save', async function (next) {
   this.password = await bcrypt.hash(this.password, 10)
   next()
 })
 
-
-function autoPopulate (next) {
-  this.populate('postCount')
-  next()
-}
 userSchema.pre('find', autoPopulate)
 userSchema.pre('findOne', autoPopulate)
 
